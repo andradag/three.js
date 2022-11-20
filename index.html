@@ -20,6 +20,7 @@
         0.1,
         1000
       );
+      camera.position.z = 5;
 
       var renderer = new THREE.WebGLRenderer({ antialias: true });
       renderer.setClearColor("#696969");
@@ -31,9 +32,18 @@
         renderer.setSize(window.innerWidth, window.innerHeight);
         camera.aspect = window.innerWidth / window.innerHeight;
 
-        camera.updateProjectMatrix();
+        camera.updateProjectionMatrix();
       });
 
+      var geometry = new THREE.SphereGeometry(1, 10, 10);
+      var material = new THREE.MeshLambertMaterial({ color: 0xffcc00 });
+      var mesh = new THREE.Mesh(geometry, material);
+
+      scene.add(mesh);
+
+      var light = new THREE.PointLight(0xffffff, 1, 500);
+      light.position.set(10, 0, 25);
+      scene.add(light);
       renderer.render(scene, camera);
     </script>
   </body>
